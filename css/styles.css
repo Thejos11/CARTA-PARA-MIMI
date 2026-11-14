@@ -334,18 +334,19 @@ button:hover {
 }
 
 .flap {
-  transform-origin: 160px 112px;
-  transition: transform 0.8s;
+  transform-origin: 160px 108px;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .paper {
-  transition: transform 0.8s;
+  transform-origin: 160px 185px;
+  transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.35s, filter 1.25s ease 0.35s;
 }
 
 .seal {
   transform-box: fill-box;
   transform-origin: center;
-  transition: opacity 0.35s;
+  transition: opacity 0.3s, transform 0.3s;
   animation: glow 2.4s ease-in-out infinite;
 }
 
@@ -354,11 +355,13 @@ button:hover {
 }
 
 .opening .paper {
-  transform: translateY(-65px);
+  transform: translateY(-120px) scale(1.06);
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.65));
 }
 
 .opening .seal {
   opacity: 0;
+  transform: scale(0.6);
 }
 
 .opening .bloom {
@@ -373,7 +376,7 @@ button:hover {
 }
 
 .opening svg {
-  opacity: 0.45;
+  opacity: 1;
 }
 
 @keyframes unfoldPhoto {
