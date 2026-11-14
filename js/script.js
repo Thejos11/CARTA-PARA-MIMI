@@ -223,7 +223,7 @@ $('heart').onclick = () => {
     show(true);
     b.classList.remove('opening');
     b.disabled = false;
-  }, R ? 0 : 1850);
+  }, R ? 0 : 1900);
 };
 
 $('back').onclick = () => show(false);

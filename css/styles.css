@@ -183,8 +183,8 @@ button:hover {
     0 14px 36px rgba(0, 0, 0, 0.55),
     0 0 28px rgba(168, 85, 247, 0.28);
   backdrop-filter: blur(8px);
-  transform-origin: top center;
-  animation: unfoldPhoto 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+  transform-origin: center;
+  animation: unfoldPhoto 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .photo-frame {
@@ -333,35 +333,59 @@ button:hover {
   animation: pulse 4s ease-in-out infinite;
 }
 
-.flap {
+.flap-closed {
   transform-origin: 160px 108px;
-  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.28s ease-in, opacity 0.05s linear 0.26s;
+}
+
+.flap-open {
+  transform-origin: 160px 108px;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) 0.26s, opacity 0.05s linear 0.25s;
 }
 
 .paper {
-  transform-origin: 160px 185px;
-  transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.35s, filter 1.25s ease 0.35s;
+  transform-origin: 160px 180px;
+  transform: translateY(8px) scale(0.92);
+}
+
+.pocket {
+  transform-origin: 160px 200px;
+  transition: opacity 0.6s ease 1.05s, transform 0.6s ease 1.05s;
 }
 
 .seal {
   transform-box: fill-box;
   transform-origin: center;
-  transition: opacity 0.3s, transform 0.3s;
+  transition: opacity 0.25s, transform 0.25s;
   animation: glow 2.4s ease-in-out infinite;
 }
 
-.opening .flap {
-  transform: scaleY(-1);
+.opening .flap-closed {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+.opening .flap-open {
+  transform: scaleY(1);
+  opacity: 1;
 }
 
 .opening .paper {
-  transform: translateY(-120px) scale(1.06);
-  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.65));
+  animation: emergeAndUnfold 1.55s cubic-bezier(0.22, 1, 0.36, 1) 0.32s forwards;
+}
+
+.opening .pocket,
+.opening .flap-open,
+.opening .sparkles {
+  opacity: 0;
+  transition: opacity 0.55s ease 1.15s;
 }
 
 .opening .seal {
   opacity: 0;
-  transform: scale(0.6);
+  transform: scale(0.5);
 }
 
 .opening .bloom {
@@ -379,14 +403,29 @@ button:hover {
   opacity: 1;
 }
 
+@keyframes emergeAndUnfold {
+  0% {
+    transform: translateY(8px) scale(0.92);
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+  }
+  48% {
+    transform: translateY(-92px) scale(0.98);
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.55));
+  }
+  100% {
+    transform: translateY(-28px) scale(1.36);
+    filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.75));
+  }
+}
+
 @keyframes unfoldPhoto {
   0% {
-    opacity: 0;
-    transform: perspective(700px) rotateX(-25deg) translateY(22px) scale(0.92);
+    opacity: 0.85;
+    transform: scale(0.96);
   }
   100% {
     opacity: 1;
-    transform: perspective(700px) rotateX(0deg) translateY(0) scale(1);
+    transform: scale(1);
   }
 }
 

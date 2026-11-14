@@ -30,7 +30,7 @@
               <stop offset="1" stop-color="#572289"/>
             </radialGradient>
             <clipPath id="photo-clip">
-              <rect x="52" y="122" width="216" height="110" rx="4"/>
+              <rect x="64" y="120" width="192" height="106" rx="5"/>
             </clipPath>
           </defs>
 
@@ -38,20 +38,25 @@
           <ellipse cx="160" cy="260" rx="120" ry="12" fill="#09050e" opacity=".7"/>
           <rect x="24" y="104" width="272" height="158" rx="8" fill="#21162e" stroke="#9872b6"/>
 
-          <!-- Tarjeta con la foto dentro del sobre que va saliendo mientras se abre -->
+          <!-- Solapa superior abierta (queda DETRÁS de la foto cuando el sobre se abre) -->
+          <path class="flap-open" d="M25 108H295L174 15Q160 5 146 15Z" fill="#1c1128" stroke="#9872b6"/>
+
+          <!-- Cuadro de la foto que sale del interior del sobre y se despliega al frente -->
           <g class="paper">
-            <rect x="44" y="114" width="232" height="142" rx="6" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1.5"/>
-            <image href="img/foto.png" x="52" y="122" width="216" height="110" preserveAspectRatio="xMidYMid slice" clip-path="url(#photo-clip)"/>
-            <rect x="52" y="122" width="216" height="110" rx="4" fill="none" stroke="#a855f7" stroke-opacity=".35"/>
-            <text x="160" y="248" text-anchor="middle" fill="#4c1d95" font-family="'Dancing Script', cursive" font-size="15" font-weight="600">Tú y yo 💜</text>
+            <rect x="54" y="112" width="212" height="138" rx="8" fill="#f5ebff" stroke="#d8b4fe" stroke-width="1.5"/>
+            <image href="img/foto.png" x="64" y="120" width="192" height="106" preserveAspectRatio="xMidYMid slice" clip-path="url(#photo-clip)"/>
+            <rect x="64" y="120" width="192" height="106" rx="5" fill="none" stroke="#a855f7" stroke-opacity=".35"/>
+            <text x="160" y="242" text-anchor="middle" fill="#4c1d95" font-family="'Dancing Script', cursive" font-size="15" font-weight="600">Tú y yo 💜</text>
           </g>
 
-          <!-- Bolsillo frontal del sobre (cubre la foto hasta que sube y sale) -->
-          <path d="M25 111L160 209 295 111V252Q295 262 285 262H35Q25 262 25 252Z" fill="url(#env)" stroke="#76578d"/>
-          <path d="M26 257L126 177M294 257L194 177" stroke="#74518b" fill="none"/>
+          <!-- Bolsillo frontal del sobre (cubre la foto mientras está adentro y se desvanece al desplegarse el cuadro) -->
+          <g class="pocket">
+            <path d="M25 111L160 209 295 111V252Q295 262 285 262H35Q25 262 25 252Z" fill="url(#env)" stroke="#76578d"/>
+            <path d="M26 257L126 177M294 257L194 177" stroke="#74518b" fill="none"/>
+          </g>
 
-          <!-- Solapa superior del sobre -->
-          <path class="flap" d="M25 108H295L174 201Q160 211 146 201Z" fill="url(#env)" stroke="#b58cce"/>
+          <!-- Solapa superior cerrada (se pliega hasta 90° y da paso a .flap-open detrás de la foto) -->
+          <path class="flap-closed" d="M25 108H295L174 201Q160 211 146 201Z" fill="url(#env)" stroke="#b58cce"/>
 
           <!-- Sello de cera -->
           <g class="seal">
@@ -61,7 +66,7 @@
           </g>
 
           <!-- Destellos alrededor del sobre -->
-          <g>
+          <g class="sparkles">
             <path d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z" fill="#f0d4ff" class="sp" transform="translate(52 52)"/>
             <path d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z" fill="#f0d4ff" class="sp" transform="translate(265 65)"/>
             <path d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z" fill="#f0d4ff" class="sp" transform="translate(40 150)"/>
